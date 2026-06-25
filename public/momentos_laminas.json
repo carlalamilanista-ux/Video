@@ -1,0 +1,18 @@
+{
+  "_info": "Momentos clave del video mapeados a láminas HTML. Completar manualmente o con IA.",
+  "_status": "pendiente",
+  "fps": 30,
+  "laminas": [
+    {
+      "id": 1,
+      "titulo": "Lámina 1",
+      "frame_inicio": 0,
+      "frame_fin": 90,
+      "segundo_inicio": 0,
+      "segundo_fin": 3,
+      "archivo_html": "laminas/lamina_001.html",
+      "notas": "",
+      "completado": false
+    }
+  ]
+}

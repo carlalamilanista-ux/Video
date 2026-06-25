@@ -1,0 +1,6 @@
+{
+  "_info": "Transcripción del video fuente. Generado por scripts/transcribe.ts",
+  "_status": "pendiente",
+  "_instrucciones": "Ejecutar: npx tsx scripts/transcribe.ts (requiere audio.wav en public/assets/)",
+  "words": []
+}

@@ -1,0 +1,57 @@
+=====================================
+EDITOR PRO MAX — LOG DE PROGRESO
+=====================================
+Fecha de inicio: 2026-06-25
+Usuario: carlalamilanista@gmail.com
+
+PASOS DEL PIPELINE
+------------------
+[ ] PASO 1: Colocar video fuente en public/assets/video.mp4
+    Comando: cp tu_video.mp4 public/assets/video.mp4
+
+[ ] PASO 2: Analizar metadatos del video
+    Comando: npx tsx scripts/analyze-video.ts public/assets/video.mp4
+    Salida:  public/video-metadata.json
+
+[ ] PASO 3: Extraer audio para transcripción
+    Comando: npx tsx scripts/extract-audio.ts public/assets/video.mp4
+    Salida:  public/assets/audio.wav
+
+[ ] PASO 4: Transcribir (word-level)
+    Comando: npx tsx scripts/transcribe.ts
+    Salida:  public/transcript.json  ← GUARDAR AQUÍ
+
+[ ] PASO 5: Detectar silencios
+    Comando: npx tsx scripts/detect-silence.ts public/assets/video.mp4
+    Salida:  public/silence.json
+
+[ ] PASO 6: Identificar momentos clave y crear láminas
+    Editar:  public/momentos_laminas.json  (definir frame_inicio / frame_fin)
+    Crear:   public/laminas/lamina_NNN.html  (una por cada momento)
+
+[ ] PASO 7: Crear composición Remotion
+    Archivo: src/compositions/MiVideo.tsx
+    Registrar en: src/Root.tsx
+
+[ ] PASO 8: Preview y render
+    Comando: npm run dev
+    Render:  npx remotion render MiVideo out/mi-video.mp4
+
+ÚLTIMO PASO COMPLETADO
+----------------------
+Ninguno — sesión recién iniciada.
+
+ARCHIVOS DE ESTADO
+------------------
+public/transcript.json       → transcripción word-level
+public/momentos_laminas.json → mapa de láminas y frames
+public/laminas/              → HTMLs individuales por lámina
+public/video-metadata.json   → (se genera en paso 2)
+public/silence.json          → (se genera en paso 5)
+public/log.txt               → este archivo
+
+NOTAS
+-----
+Actualizar "ÚLTIMO PASO COMPLETADO" cada vez que termines un paso.
+Así puedes retomar desde aquí si la sesión se interrumpe.
+=====================================
