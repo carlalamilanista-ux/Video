@@ -20,6 +20,7 @@ import {BeforeAfterDemo} from "./compositions/BeforeAfterDemo";
 import {TalkingHeadEdit} from "./templates/editing/TalkingHeadEdit";
 import {PodcastClip} from "./templates/editing/PodcastClip";
 import {KaizenCourseEdit} from "./compositions/KaizenCourseEdit";
+import {TarotAmandaReel} from "./compositions/TarotAmandaReel";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -105,6 +106,17 @@ export const RemotionRoot: React.FC = () => {
             author: "Jane Doe",
             role: "CEO at Company",
           }}
+        />
+      </Folder>
+
+      <Folder name="Amanda">
+        <Composition
+          id="TarotAmandaReel"
+          component={TarotAmandaReel}
+          durationInFrames={900}
+          fps={30}
+          width={1080}
+          height={1920}
         />
       </Folder>
 
