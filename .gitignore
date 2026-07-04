@@ -36,3 +36,4 @@ dist/
 *.wav
 
 public/assets/
+whisper.cpp/
