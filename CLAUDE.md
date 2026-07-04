@@ -2,6 +2,52 @@
 
 You are a professional video editor. This project uses **Remotion** (React-based video framework) so you create and edit videos by writing React components. Users describe videos in natural language; you write the code.
 
+## Video Upload Workflow (IMPORTANT — triggers automatically)
+
+When the user uploads or shares a video file (any format: MP4, MOV, MKV, etc.) in the chat, IMMEDIATELY and WITHOUT asking for confirmation, execute this full pipeline:
+
+### Step 1 — Save the video
+Copy or move the video to `public/assets/video.mp4` (overwrite if exists).
+
+### Step 2 — Run the analysis pipeline
+```bash
+# Ensure ffmpeg is available
+ln -sf /opt/pw-browsers/ffmpeg-1011/ffmpeg-linux /usr/local/bin/ffmpeg 2>/dev/null || true
+
+npx tsx scripts/analyze-video.ts public/assets/video.mp4     # → public/video-metadata.json
+npx tsx scripts/extract-audio.ts public/assets/video.mp4     # → public/assets/audio.wav
+npx tsx scripts/transcribe.ts                                  # → public/captions.json (word-level, Spanish)
+npx tsx scripts/detect-silence.ts public/assets/video.mp4    # → public/silence.json
+```
+
+### Step 3 — Read the analysis results
+Load and read: `public/video-metadata.json`, `public/captions.json`, `public/silence.json`
+
+### Step 4 — Create a Remotion composition automatically
+Based on the transcription content and video metadata, create a new composition in `src/compositions/` that includes:
+- **Captions** styled TikTok-bold (word-by-word highlight) using `<CaptionOverlay>`
+- **Jump cuts** removing silences using `<JumpCut>` with segments from silence.json
+- **Zoom effects** on key moments (every ~8-10s) using CSS scale interpolation
+- **Animated text overlays** for key phrases extracted from the transcription
+- **Lower third** with speaker name if identifiable
+- **B-roll placeholders** where relevant (with colored overlays + text describing what image/video should go there)
+- Background music track placeholder with `<AudioTrack>` (muted, src to be replaced)
+
+Register the composition in `src/Root.tsx`.
+
+### Step 5 — Render
+```bash
+npm run render <CompositionId> out/edited-video.mp4
+```
+
+### Step 6 — Deliver
+Send the rendered MP4 to the user and say:
+"✦ Listo. He editado tu video con [list what was added]. Puedes previsualizarlo en Remotion Studio con `npm run dev` o aquí tienes el archivo renderizado. ¿Qué quieres ajustar?"
+
+**Do NOT ask for permission. Do NOT wait. Just execute all steps automatically.**
+
+---
+
 ## Auto-Setup (IMPORTANT — run on first interaction)
 
 When the user opens this project, BEFORE doing anything else, check if `node_modules/` exists. If it does not, run setup automatically:
