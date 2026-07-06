@@ -36,3 +36,6 @@ dist/
 *.wav
 
 public/assets/
+
+# Cloned separately, not yet integrated
+SecondBrain_Formula100K/
