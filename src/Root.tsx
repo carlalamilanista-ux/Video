@@ -21,6 +21,7 @@ import {TalkingHeadEdit} from "./templates/editing/TalkingHeadEdit";
 import {PodcastClip} from "./templates/editing/PodcastClip";
 import {KaizenCourseEdit} from "./compositions/KaizenCourseEdit";
 import {TarotAmandaReel} from "./compositions/TarotAmandaReel";
+import {OracionAmanda} from "./compositions/OracionAmanda";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -110,6 +111,14 @@ export const RemotionRoot: React.FC = () => {
       </Folder>
 
       <Folder name="Amanda">
+        <Composition
+          id="OracionAmanda"
+          component={OracionAmanda}
+          durationInFrames={1080}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
         <Composition
           id="TarotAmandaReel"
           component={TarotAmandaReel}
