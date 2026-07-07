@@ -287,7 +287,7 @@ const SceneOracion: React.FC = () => {
           fontSize: 22, color: C.muted,
           letterSpacing: 3, textTransform: "uppercase", opacity: 0.6,
         }}>
-          videntesqueaciertan.com
+          eltarotdeamanda.com
         </div>
       </div>
     </AbsoluteFill>
@@ -349,7 +349,7 @@ const SceneOutro: React.FC = () => {
           961 283 972
         </div>
         <div style={{fontFamily: "'Inter', sans-serif", fontSize: 22, color: C.muted, marginTop: 6, letterSpacing: 2}}>
-          videntesqueaciertan.com
+          eltarotdeamanda.com
         </div>
       </div>
     </AbsoluteFill>
