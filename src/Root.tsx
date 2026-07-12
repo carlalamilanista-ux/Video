@@ -15,6 +15,7 @@ import {Testimonial} from "./templates/content/Testimonial";
 // Promo templates
 import {Announcement} from "./templates/promo/Announcement";
 import {BeforeAfterDemo} from "./compositions/BeforeAfterDemo";
+import {TecitoStory} from "./compositions/TecitoStory";
 
 // Editing templates
 import {TalkingHeadEdit} from "./templates/editing/TalkingHeadEdit";
@@ -105,6 +106,17 @@ export const RemotionRoot: React.FC = () => {
             author: "Jane Doe",
             role: "CEO at Company",
           }}
+        />
+      </Folder>
+
+      <Folder name="Recipes">
+        <Composition
+          id="TecitoStory"
+          component={TecitoStory}
+          durationInFrames={180}
+          fps={30}
+          width={1080}
+          height={1920}
         />
       </Folder>
 
