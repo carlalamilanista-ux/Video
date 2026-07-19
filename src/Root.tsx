@@ -20,6 +20,7 @@ import {BeforeAfterDemo} from "./compositions/BeforeAfterDemo";
 import {TalkingHeadEdit} from "./templates/editing/TalkingHeadEdit";
 import {PodcastClip} from "./templates/editing/PodcastClip";
 import {KaizenCourseEdit} from "./compositions/KaizenCourseEdit";
+import {KaizenVideo2} from "./compositions/KaizenVideo2";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -134,6 +135,14 @@ export const RemotionRoot: React.FC = () => {
       </Folder>
 
       <Folder name="Editing">
+        <Composition
+          id="KaizenVideo2"
+          component={KaizenVideo2}
+          durationInFrames={938}
+          fps={30}
+          width={478}
+          height={850}
+        />
         <Composition
           id="KaizenCourseEdit"
           component={KaizenCourseEdit}
