@@ -138,7 +138,7 @@ export const RemotionRoot: React.FC = () => {
         <Composition
           id="KaizenVideo2"
           component={KaizenVideo2}
-          durationInFrames={938}
+          durationInFrames={891}
           fps={30}
           width={478}
           height={850}
