@@ -3,7 +3,6 @@ import {
   Video,
   useCurrentFrame,
   useVideoConfig,
-  interpolate,
   staticFile,
 } from "remotion";
 
@@ -63,15 +62,6 @@ const ZOOMS: [number, number, number][] = [
   [s("00:29.280"), s("00:31.250"), 1.00], // Normal
 ];
 
-// ─── TRANSICIONES (flash overlay) ─────────────────────────────────────────────
-const TRANSITIONS: {sec: number; type: "whip" | "glitch" | "luma" | "slide"}[] =
-  [
-    {sec: s("00:08.160"), type: "whip"},
-    {sec: s("00:16.120"), type: "slide"},
-    {sec: s("00:24.840"), type: "glitch"},
-    {sec: s("00:29.280"), type: "luma"},
-  ];
-
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
 function getZoomScale(currentSec: number): number {
   for (const [start, end, scale] of ZOOMS) {
@@ -82,41 +72,6 @@ function getZoomScale(currentSec: number): number {
   return 1.0;
 }
 
-function getTransitionOpacity(
-  currentSec: number,
-  frame: number
-): {opacity: number; color: string; blur: number} {
-  let opacity = 0;
-  let color = "white";
-  let blur = 0;
-
-  for (const t of TRANSITIONS) {
-    const tFrame = f(t.sec);
-    const localFrame = frame - tFrame;
-    if (localFrame >= 0 && localFrame < 12) {
-      const prog = interpolate(localFrame, [0, 6, 12], [0, 1, 0], {
-        extrapolateRight: "clamp",
-      });
-      if (t.type === "glitch") {
-        opacity = prog * 0.6;
-        color = "#ff0055";
-        blur = prog * 4;
-      } else if (t.type === "luma") {
-        opacity = prog * 0.8;
-        color = "white";
-      } else if (t.type === "whip") {
-        opacity = prog * 0.4;
-        color = "white";
-        blur = prog * 8;
-      } else if (t.type === "slide") {
-        opacity = prog * 0.3;
-        color = "white";
-      }
-      break;
-    }
-  }
-  return {opacity, color, blur};
-}
 
 // ─── SUBTITLE COMPONENT ───────────────────────────────────────────────────────
 const Subtitle: React.FC<{text: string; frame: number; startFrame: number; endFrame: number}> = ({
@@ -125,50 +80,35 @@ const Subtitle: React.FC<{text: string; frame: number; startFrame: number; endFr
   startFrame,
   endFrame,
 }) => {
-  const FADE = 3;
-  const opacity = interpolate(
-    frame,
-    [startFrame, startFrame + FADE, endFrame - FADE, endFrame],
-    [0, 1, 1, 0],
-    {extrapolateRight: "clamp", extrapolateLeft: "clamp"}
-  );
-
   if (frame < startFrame || frame > endFrame) return null;
 
   return (
     <div
       style={{
         position: "absolute",
-        bottom: 90,
+        bottom: 80,
         left: 0,
         right: 0,
         display: "flex",
         justifyContent: "center",
-        opacity,
+        padding: "0 20px",
       }}
     >
-      <div
+      <span
         style={{
-          background: "rgba(0,0,0,0.65)",
-          borderRadius: 8,
-          padding: "8px 20px",
-          maxWidth: "85%",
+          color: "#ffffff",
+          fontSize: 42,
+          fontFamily: "Arial, sans-serif",
+          fontWeight: 900,
+          lineHeight: 1.2,
           textAlign: "center",
+          textShadow:
+            "2px 2px 0px #000, -2px 2px 0px #000, 2px -2px 0px #000, -2px -2px 0px #000, 0px 3px 6px rgba(0,0,0,0.9)",
+          maxWidth: "90%",
         }}
       >
-        <span
-          style={{
-            color: "#ffffff",
-            fontSize: 36,
-            fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
-            fontWeight: 700,
-            lineHeight: 1.2,
-            textShadow: "0 2px 8px rgba(0,0,0,0.8)",
-          }}
-        >
-          {text}
-        </span>
-      </div>
+        {text}
+      </span>
     </div>
   );
 };
@@ -180,24 +120,14 @@ export const KaizenVideo2: React.FC = () => {
   const currentSec = frame / fps;
 
   const scale = getZoomScale(currentSec);
-  const {opacity, color, blur} = getTransitionOpacity(currentSec, frame);
-
-  // Suavizar el zoom
-  const smoothScale = interpolate(
-    frame,
-    [Math.max(0, frame - 8), frame],
-    [scale, scale],
-    {extrapolateRight: "clamp"}
-  );
 
   return (
     <AbsoluteFill style={{background: "#000", overflow: "hidden"}}>
-      {/* VIDEO con zoom */}
+      {/* VIDEO con zoom suave */}
       <AbsoluteFill
         style={{
-          transform: `scale(${smoothScale})`,
+          transform: `scale(${scale})`,
           transformOrigin: "center 35%",
-          willChange: "transform",
         }}
       >
         <Video
@@ -205,18 +135,6 @@ export const KaizenVideo2: React.FC = () => {
           style={{width: "100%", height: "100%", objectFit: "cover"}}
         />
       </AbsoluteFill>
-
-      {/* FLASH DE TRANSICIÓN */}
-      {opacity > 0 && (
-        <AbsoluteFill
-          style={{
-            background: color,
-            opacity,
-            filter: blur > 0 ? `blur(${blur}px)` : undefined,
-            pointerEvents: "none",
-          }}
-        />
-      )}
 
       {/* SUBTÍTULOS */}
       {SUBTITLES.map((sub, i) => (
