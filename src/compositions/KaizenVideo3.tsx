@@ -14,21 +14,25 @@ const f = (timeSec: number) => Math.floor((timeSec - TRIM_START) * FPS);
 
 // ─── SUBTÍTULOS ───────────────────────────────────────────────────────────────
 const SUBTITLES = [
-  {start: 0.712, end: 1.600, text: "El problema"},
-  {start: 1.600, end: 3.000, text: "no son los ejercicios."},
-  {start: 3.200, end: 4.400, text: "¿Sabes por qué"},
-  {start: 4.400, end: 5.600, text: "se están haciendo"},
-  {start: 5.600, end: 7.000, text: "esos ejercicios?"},
-  {start: 7.200, end: 8.400, text: "Es por la rutina"},
-  {start: 8.400, end: 9.600, text: "vocal, si bien"},
-  {start: 9.600, end: 11.000, text: "no está personalizada"},
-  {start: 11.200, end: 13.000, text: "para ti..."},
-  {start: 13.200, end: 14.600, text: "Es una auténtica"},
-  {start: 14.600, end: 17.000, text: "pérdida de tiempo."},
-  {start: 17.200, end: 18.600, text: "Y te aseguro"},
-  {start: 18.600, end: 19.800, text: "que sé lo frustrante"},
-  {start: 19.800, end: 21.000, text: "que puede llegar a ser."},
-  {start: 21.100, end: 22.572, text: "Yo también he estado ahí."},
+  {start: 0.712, end: 1.500, text: "El problema"},
+  {start: 1.500, end: 3.000, text: "no son los ejercicios."},
+  {start: 3.100, end: 4.200, text: "El problema es que"},
+  {start: 4.200, end: 5.300, text: "no sabes por qué"},
+  {start: 5.300, end: 6.200, text: "se están haciendo"},
+  {start: 6.200, end: 7.000, text: "esos ejercicios."},
+  {start: 7.100, end: 8.400, text: "Una rutina vocal"},
+  {start: 8.400, end: 9.600, text: "sin un diagnóstico"},
+  {start: 9.600, end: 11.000, text: "totalmente personalizado"},
+  {start: 11.100, end: 12.000, text: "para ti"},
+  {start: 12.000, end: 13.000, text: "y tu voz..."},
+  {start: 13.100, end: 14.400, text: "Es una auténtica"},
+  {start: 14.400, end: 17.000, text: "pérdida de tiempo."},
+  {start: 17.100, end: 18.300, text: "Y te aseguro"},
+  {start: 18.300, end: 19.500, text: "que sé lo frustrante"},
+  {start: 19.500, end: 20.200, text: "que puede llegar"},
+  {start: 20.200, end: 21.000, text: "a ser eso."},
+  {start: 21.100, end: 21.900, text: "Porque yo también"},
+  {start: 21.900, end: 22.572, text: "he estado ahí."},
 ];
 
 // ─── ZOOMS ────────────────────────────────────────────────────────────────────
@@ -96,7 +100,7 @@ const Subtitle: React.FC<{
     <div
       style={{
         position: "absolute",
-        bottom: 80,
+        bottom: 140,
         left: 0,
         right: 0,
         display: "flex",
