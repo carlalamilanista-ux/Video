@@ -22,6 +22,7 @@ import {PodcastClip} from "./templates/editing/PodcastClip";
 import {KaizenCourseEdit} from "./compositions/KaizenCourseEdit";
 import {KaizenVideo2} from "./compositions/KaizenVideo2";
 import {KaizenVideo3} from "./compositions/KaizenVideo3";
+import {KaizenVideo4} from "./compositions/KaizenVideo4";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -148,6 +149,14 @@ export const RemotionRoot: React.FC = () => {
           id="KaizenVideo3"
           component={KaizenVideo3}
           durationInFrames={654}
+          fps={30}
+          width={478}
+          height={850}
+        />
+        <Composition
+          id="KaizenVideo4"
+          component={KaizenVideo4}
+          durationInFrames={450}
           fps={30}
           width={478}
           height={850}
