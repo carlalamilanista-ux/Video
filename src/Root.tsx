@@ -15,6 +15,7 @@ import {Testimonial} from "./templates/content/Testimonial";
 // Promo templates
 import {Announcement} from "./templates/promo/Announcement";
 import {BeforeAfterDemo} from "./compositions/BeforeAfterDemo";
+import {InvaMulaCarousel} from "./compositions/InvaMulaCarousel";
 
 // Editing templates
 import {TalkingHeadEdit} from "./templates/editing/TalkingHeadEdit";
@@ -133,6 +134,21 @@ export const RemotionRoot: React.FC = () => {
           fps={30}
           width={1920}
           height={1080}
+        />
+      </Folder>
+
+      <Folder name="Carousel">
+        <Composition
+          id="InvaMulaCarousel"
+          component={InvaMulaCarousel}
+          durationInFrames={840}
+          fps={30}
+          width={1080}
+          height={1350}
+          defaultProps={{
+            videoSrc: "assets/diva-dance-clip.mp4",
+            photoSrc: "assets/inva-mula-encuentro.jpg",
+          }}
         />
       </Folder>
 
