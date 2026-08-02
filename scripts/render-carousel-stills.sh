@@ -1,16 +1,22 @@
 #!/bin/bash
 # Editor Pro Max - Instagram Carousel Still Export
-# Renders each of the 7 InvaMulaCarousel slides as a standalone PNG (1080x1350)
+# Renders each carousel slide as a standalone PNG (1080x1350)
 # ready to upload as an Instagram carousel post.
 #
-# Usage: ./scripts/render-carousel-stills.sh [composition-id]
+# Usage: ./scripts/render-carousel-stills.sh [composition-id] [slide-count] [output-subdir]
+#
+# Examples:
+#   ./scripts/render-carousel-stills.sh InvaMulaCarousel 7 invamula
+#   ./scripts/render-carousel-stills.sh BegonaSalgueiroCarousel 5 begona
 
 COMP_ID=${1:-"InvaMulaCarousel"}
+SLIDE_COUNT=${2:-7}
+OUTPUT_SUBDIR=${3:-""}
 SLIDE_FRAMES=120   # 4s per slide at 30fps
-SLIDE_COUNT=7
 OFFSET=70          # frame within each slide's hold, past the enter animation
 
 OUTPUT_DIR="out/carousel"
+[ -n "$OUTPUT_SUBDIR" ] && OUTPUT_DIR="out/carousel/${OUTPUT_SUBDIR}"
 mkdir -p "$OUTPUT_DIR"
 
 echo "=== Carousel Still Export: ${COMP_ID} ==="

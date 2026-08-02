@@ -16,6 +16,7 @@ import {Testimonial} from "./templates/content/Testimonial";
 import {Announcement} from "./templates/promo/Announcement";
 import {BeforeAfterDemo} from "./compositions/BeforeAfterDemo";
 import {InvaMulaCarousel} from "./compositions/InvaMulaCarousel";
+import {BegonaSalgueiroCarousel} from "./compositions/BegonaSalgueiroCarousel";
 
 // Editing templates
 import {TalkingHeadEdit} from "./templates/editing/TalkingHeadEdit";
@@ -148,6 +149,23 @@ export const RemotionRoot: React.FC = () => {
           defaultProps={{
             videoSrc: "assets/diva-dance-clip.mp4",
             photoSrc: "assets/inva-mula-encuentro.jpg",
+          }}
+        />
+        <Composition
+          id="BegonaSalgueiroCarousel"
+          component={BegonaSalgueiroCarousel}
+          durationInFrames={600}
+          fps={30}
+          width={1080}
+          height={1350}
+          defaultProps={{
+            photos: [
+              "assets/begona/foto-1.jpg",
+              "assets/begona/foto-2.jpg",
+              "assets/begona/foto-3.jpg",
+              "assets/begona/foto-4.jpg",
+              "assets/begona/foto-5.jpg",
+            ],
           }}
         />
       </Folder>
