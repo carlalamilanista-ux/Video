@@ -4,11 +4,11 @@ import {FitImage} from "../components/media/FitImage";
 import {FONT_FAMILIES, loadDefaultFonts} from "../presets/fonts";
 import {secondsToFrames} from "../presets/dimensions";
 
-// Marca: Begoña Salgueiro — negro, dorado y rosa palo, estética "high ticket".
-const BLACK = "#0a0908";
-const GOLD = "#c9a227";
-const ROSE = "#d9ada4";
-const WHITE = "#f7f3f0";
+// Marca: Begoña Salgueiro — blanco, rojo y gris, sin nombre ni membrete.
+const DARK = "#1c1c1c";
+const RED = "#c1121f";
+const GRAY = "#b0b0b0";
+const WHITE = "#f5f5f5";
 
 const TOTAL_SLIDES = 5;
 const SLIDE_SECONDS = 4;
@@ -35,7 +35,7 @@ const PhotoSlide: React.FC<{index: number; photoSrc?: string; caption: string}> 
   const textAnim = useEnter(6);
 
   return (
-    <AbsoluteFill style={{backgroundColor: BLACK}}>
+    <AbsoluteFill style={{backgroundColor: DARK}}>
       {photoSrc ? (
         <FitImage src={staticFile(photoSrc)} fit="cover" kenBurns="zoomIn" kenBurnsIntensity={0.06} />
       ) : (
@@ -43,14 +43,14 @@ const PhotoSlide: React.FC<{index: number; photoSrc?: string; caption: string}> 
           style={{
             alignItems: "center",
             justifyContent: "center",
-            border: `2px dashed ${GOLD}88`,
+            border: `2px dashed ${RED}88`,
             margin: 24,
           }}
         >
           <p
             style={{
               fontFamily: FONT_FAMILIES.body,
-              color: `${GOLD}cc`,
+              color: `${GRAY}`,
               fontSize: 26,
               textAlign: "center",
               maxWidth: "70%",
@@ -62,26 +62,6 @@ const PhotoSlide: React.FC<{index: number; photoSrc?: string; caption: string}> 
         </AbsoluteFill>
       )}
 
-      {/* Marca, discreta, arriba */}
-      <div
-        style={{
-          position: "absolute",
-          top: 56,
-          left: 0,
-          right: 0,
-          textAlign: "center",
-          fontFamily: FONT_FAMILIES.elegant,
-          color: WHITE,
-          fontSize: 26,
-          letterSpacing: 6,
-          textTransform: "uppercase",
-          textShadow: "0 2px 12px rgba(0,0,0,0.6)",
-        }}
-      >
-        Begoña Salgueiro
-        <div style={{width: 56, height: 2, background: GOLD, margin: "14px auto 0"}} />
-      </div>
-
       {/* Scrim + texto legible abajo */}
       <div
         style={{
@@ -90,11 +70,11 @@ const PhotoSlide: React.FC<{index: number; photoSrc?: string; caption: string}> 
           right: 0,
           bottom: 0,
           padding: "260px 70px 130px",
-          background: `linear-gradient(to top, ${BLACK} 25%, rgba(10,9,8,0.78) 55%, transparent 100%)`,
+          background: `linear-gradient(to top, ${DARK} 25%, rgba(28,28,28,0.78) 55%, transparent 100%)`,
         }}
       >
         <div style={{...textAnim, textAlign: "center"}}>
-          <div style={{width: 70, height: 3, background: ROSE, margin: "0 auto 26px"}} />
+          <div style={{width: 70, height: 3, background: RED, margin: "0 auto 26px"}} />
           <p
             style={{
               fontFamily: FONT_FAMILIES.heading,
@@ -117,7 +97,7 @@ const PhotoSlide: React.FC<{index: number; photoSrc?: string; caption: string}> 
           bottom: 48,
           right: 70,
           fontFamily: FONT_FAMILIES.body,
-          color: GOLD,
+          color: GRAY,
           fontSize: 24,
           letterSpacing: 2,
           fontWeight: 600,
