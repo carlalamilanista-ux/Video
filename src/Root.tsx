@@ -17,6 +17,7 @@ import {Announcement} from "./templates/promo/Announcement";
 import {BeforeAfterDemo} from "./compositions/BeforeAfterDemo";
 import {InvaMulaCarousel} from "./compositions/InvaMulaCarousel";
 import {BegonaSalgueiroCarousel} from "./compositions/BegonaSalgueiroCarousel";
+import {BegonaSalgueiroTips} from "./compositions/BegonaSalgueiroTips";
 
 // Editing templates
 import {TalkingHeadEdit} from "./templates/editing/TalkingHeadEdit";
@@ -167,6 +168,14 @@ export const RemotionRoot: React.FC = () => {
               "assets/begona/foto-5.jpg",
             ],
           }}
+        />
+        <Composition
+          id="BegonaSalgueiroTips"
+          component={BegonaSalgueiroTips}
+          durationInFrames={150}
+          fps={30}
+          width={1080}
+          height={1350}
         />
       </Folder>
 
