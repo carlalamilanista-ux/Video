@@ -40,6 +40,7 @@ La usuaria no programa: explica cada paso en una frase, sin mostrar código ni c
 1. `python3 scripts/editar/render.py <carpeta> borrador` → `out/ediciones/<nombre>/borrador.mp4` (baja resolución, marca BORRADOR). Envíaselo con SendUserFile y saca 2-3 fotogramas para revisar tú antes que nadie que titular y subtítulos se leen bien.
 2. **Para y espera.** Si pide cambios, modifica solo lo necesario en la receta y vuelve al paso que corresponda (cortes → paso 3; texto o diseño → paso 5).
 3. Cuando apruebe: `receta.py <carpeta> aprobar-final` y `python3 scripts/editar/render.py <carpeta> final` → `out/ediciones/<nombre>/final.mp4` (1080x1920, 9:16). Envíaselo.
+4. Termina recordándole: «Si quieres animar este reel, escribe `/hyperframes Anima mi reel.`»
 
 ## Cambios posteriores
 Con «/editar <nombre>» + un cambio («quita el corte c5», «cambia el titular», «subtítulos más grandes»), lee la receta, cambia solo eso (los tamaños de diseño van en `tokens.json` solo si el cambio es para todos los vídeos; si es solo para este, díselo) y rehaz desde el paso afectado. El historial de la receta queda como registro.

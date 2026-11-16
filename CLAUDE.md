@@ -27,6 +27,11 @@ Siempre que la usuaria use **/hyperframes**:
    - **Listas que se marcan al nombrarlas**: cuando enumera elementos, se muestra la lista y cada punto se marca justo cuando lo nombra.
    - **Un efecto por idea, no en cada frase**: agrupa la transcripción en ideas y da a cada idea un solo efecto; el resto del tiempo, solo vídeo y subtítulos.
 
+### Recordatorio para la usuaria
+Cuando la usuaria quiera animar su reel (o pregunte cómo hacerlo, o termine un vídeo con /editar), recuérdale que escriba exactamente:
+
+`/hyperframes Anima mi reel.`
+
 ## Auto-Setup (IMPORTANT — run on first interaction)
 
 When the user opens this project, BEFORE doing anything else, check if `node_modules/` exists. If it does not, run setup automatically:
