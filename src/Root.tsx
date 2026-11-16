@@ -23,6 +23,7 @@ import {KaizenCourseEdit} from "./compositions/KaizenCourseEdit";
 import {KaizenVideo2} from "./compositions/KaizenVideo2";
 import {KaizenVideo3} from "./compositions/KaizenVideo3";
 import {KaizenVideo4} from "./compositions/KaizenVideo4";
+import {EditarVideo, calcularMetadatosEditar, propsEjemploEditar} from "./compositions/editar/EditarVideo";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -197,6 +198,18 @@ export const RemotionRoot: React.FC = () => {
             showCaptions: true,
             captionPreset: "bold" as const,
           }}
+        />
+      </Folder>
+      <Folder name="Editar">
+        <Composition
+          id="EditarVideo"
+          component={EditarVideo}
+          durationInFrames={90}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={propsEjemploEditar}
+          calculateMetadata={calcularMetadatosEditar}
         />
       </Folder>
     </>

@@ -2,6 +2,31 @@
 
 You are a professional video editor. This project uses **Remotion** (React-based video framework) so you create and edit videos by writing React components. Users describe videos in natural language; you write the code.
 
+## Reglas de la usuaria (prioridad máxima)
+
+- La usuaria no programa: explicar cada paso en una frase, en español, sin mostrar código.
+- **Nunca borrar, mover ni sobrescribir un vídeo original.** Las ediciones van a `public/ediciones/<nombre>/` y `out/ediciones/<nombre>/`.
+
+### Sistema de diseño
+- Ubicación: **`public/sistema-de-diseno/`**
+  - `original/` → contenido del ZIP del sistema de diseño (sin editar)
+  - `fuentes/` → archivos de fuentes
+  - `tokens.json` → colores, fuentes, tamaños, posiciones y animación que usan las plantillas
+- Si `tokens.json` tiene la clave `_estado` = PROVISIONAL, el ZIP aún no se ha cargado: avisar a la usuaria.
+
+### Comando /editar
+Definido en `.claude/commands/editar.md`. Scripts en `scripts/editar/`, plantilla Remotion `src/compositions/editar/EditarVideo.tsx` (composición `EditarVideo`).
+Cada vídeo tiene una **receta** en `public/ediciones/<nombre>/receta.json` con todas las decisiones (cortes aprobados, titular, subtítulos, encuadre, estado e historial) y su transcripción palabra a palabra en `transcripcion.json` (tiempos del original) y `transcripcion-cortada.json` (tiempos tras los cortes).
+
+### Regla /hyperframes
+Siempre que la usuaria use **/hyperframes**:
+1. Usa como texto y tiempos la **transcripción JSON de la receta** del vídeo (`public/ediciones/<nombre>/transcripcion-cortada.json` si ya está cortado; si no, `transcripcion.json`), y el titular y el vídeo cortado de esa receta.
+2. Usa **su sistema de diseño** (`public/sistema-de-diseno/tokens.json`, fuentes de `fuentes/` y referencias de `original/`): colores, tipografías y estilo; nada de paletas o fuentes inventadas.
+3. **Decide tú dónde va cada animación**, sincronizada con el momento exacto en que se dice cada palabra:
+   - **Números grandes**: cuando dice una cifra, dato, precio o porcentaje, aparece en grande en pantalla.
+   - **Listas que se marcan al nombrarlas**: cuando enumera elementos, se muestra la lista y cada punto se marca justo cuando lo nombra.
+   - **Un efecto por idea, no en cada frase**: agrupa la transcripción en ideas y da a cada idea un solo efecto; el resto del tiempo, solo vídeo y subtítulos.
+
 ## Auto-Setup (IMPORTANT — run on first interaction)
 
 When the user opens this project, BEFORE doing anything else, check if `node_modules/` exists. If it does not, run setup automatically:

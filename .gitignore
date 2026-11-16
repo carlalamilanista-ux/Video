@@ -36,3 +36,8 @@ dist/
 *.wav
 
 public/assets/
+
+# /editar: archivos temporales
+__pycache__/
+*.tmp
+public/ediciones/*/ffmpeg-filtros.txt
